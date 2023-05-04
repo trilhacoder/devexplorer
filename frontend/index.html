@@ -3,13 +3,11 @@
         <title>Lista de Tarefas</title>
         <link rel="shortcut icon" href="logo.png" type="image/x-icon">
         <style>
-            h1 {
-                color: blueviolet;
-                text-transform: uppercase;
-                font-family: sans-serif;
+            .cadastro {
+                margin-top: 30px;
             }
             .titulo-entrada {
-                width: 326px;
+                width: 425px;
                 height: 30px;
                 margin-bottom: 20px;
                 border: 1px solid lightgray;
@@ -37,7 +35,7 @@
                 cursor: pointer;
             }
             .titulo-adicionado {
-                width: 300px;
+                width: 400px;
                 height: 30px;
                 border: 1px solid lightgray;
                 border-radius: 5px;
@@ -59,15 +57,12 @@
                 color: white;
                 background-color: rgb(212, 13, 13);
             }
-            div {
-                margin-bottom: 10px;
-            }
         </style>        
     </head>
     <body>
-        <h1>Lista de Tarefas</h1>
+        <img src="logo.png" alt="Logo do App Lista de Tarefas">
         
-        <form>
+        <form class="cadastro">
             <input name="tituloEntrada" class="titulo-entrada" placeholder="Escreva aqui sua tarefa...">
             <button onclick="adicionarTarefa(event)" class="botao-adicionar">+</button><br />
         </form>
