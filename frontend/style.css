@@ -1,0 +1,57 @@
+/* cadastro da tarefa */
+.cadastro {
+    margin-top: 30px;
+}
+.cadastroTitulo {
+    width: 400px;
+    height: 30px;
+    margin-bottom: 20px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+}
+.botaoAdicionar {
+    width: 30px;
+    height: 30px;
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.botaoAdicionar:hover {
+    background-color: rgb(101, 31, 168);
+}
+
+/* tarefas cadastradas */
+.concluida {
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+.titulo {
+    width: 375px;
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+}
+.botaoRemover {
+    width: 30px;
+    height: 30px;                
+    border: 2px solid rgb(212, 13, 13) ;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(212, 13, 13);
+    background-color: white;
+}
+.botaoRemover:hover {
+    color: white;
+    background-color: rgb(212, 13, 13);
+}

@@ -1,125 +1,18 @@
 <html>
     <head>
         <title>Lista de Tarefas</title>
-        <link rel="shortcut icon" href="logo.png" type="image/x-icon">
-        <style>
-            .cadastro {
-                margin-top: 30px;
-            }
-            .titulo-entrada {
-                width: 425px;
-                height: 30px;
-                margin-bottom: 20px;
-                border: 1px solid lightgray;
-                border-radius: 5px;
-                padding-left: 10px;
-                padding-right: 10px;
-                font-size: 16px;
-            }
-            .botao-adicionar {
-                width: 30px;
-                height: 30px;
-                background-color: blueviolet;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
-            }
-            .botao-adicionar:hover {
-                background-color: rgb(101, 31, 168);
-            }
-            .tarefa-concluida {
-                height: 15px;
-                width: 15px;
-                cursor: pointer;
-            }
-            .titulo-adicionado {
-                width: 400px;
-                height: 30px;
-                border: 1px solid lightgray;
-                border-radius: 5px;
-                padding-left: 10px;
-                padding-right: 10px;
-                font-size: 16px;
-            }
-            .botao-remover {
-                width: 30px;
-                height: 30px;                
-                border: 2px solid rgb(212, 13, 13) ;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
-                color: rgb(212, 13, 13);
-                background-color: white;
-            }
-            .botao-remover:hover {
-                color: white;
-                background-color: rgb(212, 13, 13);
-            }
-        </style>        
+        <link rel="icon" href="favicon.png">
+        <link rel="stylesheet" href="style.css">
+        <script src="scripts.js" defer></script>
     </head>
     <body>
         <img src="logo.png" alt="Logo do App Lista de Tarefas">
         
         <form class="cadastro">
-            <input name="tituloEntrada" class="titulo-entrada" placeholder="Escreva aqui sua tarefa...">
-            <button onclick="adicionarTarefa(event)" class="botao-adicionar">+</button><br />
+            <input name="cadastroTitulo" class="cadastroTitulo" placeholder="Escreva aqui sua tarefa...">
+            <button onclick="adicionarTarefa(event)" class="botaoAdicionar">+</button><br />
         </form>
 
-        <div id="lista-de-tarefas"></div>
-
-        <script>
-
-            listarTarefas()
-
-            async function listarTarefas() {
-                let listaDeTarefas = document.querySelector("#lista-de-tarefas")
-                listaDeTarefas.innerHTML = ""
-                
-                let response = await fetch("http://localhost:3000/tarefas")
-                let tarefas = await response.json()                   
-                tarefas.forEach(tarefa => {
-                    listaDeTarefas.innerHTML += `
-                        <form id="${tarefa.id}">
-                            <input name="concluida" class="tarefa-concluida" onchange="atualizarTarefa(event)" ${tarefa.concluida ? "checked" : ""} type="checkbox">
-                            <input name="titulo" class="titulo-adicionado" onblur="atualizarTarefa(event)" value="${tarefa.titulo}">
-                            <button onclick="removerTarefa(event)" class="botao-remover">x</button>
-                        </form>`
-                })
-            }
-
-            async function adicionarTarefa(event) {
-                await fetch("http://localhost:3000/tarefas", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        titulo: event.target.parentElement.tituloEntrada.value,
-                        concluida: false
-                    })
-                })
-                listarTarefas()
-            }
-            async function removerTarefa(event) {
-                await fetch(`http://localhost:3000/tarefas/${event.target.parentElement.id}`, { method: 'DELETE' })
-                listarTarefas()
-            }
-
-            async function atualizarTarefa(event) {
-                await fetch(`http://localhost:3000/tarefas/${event.target.parentElement.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        titulo: event.target.parentElement.titulo.value,
-                        concluida: event.target.parentElement.concluida.checked
-                    })
-                })
-                listarTarefas()
-            }
-        </script>
+        <div id="listaDeTarefas"></div>
     </body>
 </html>

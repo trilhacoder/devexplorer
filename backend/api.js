@@ -1,28 +1,32 @@
 let express = require('express')
 let cors = require('cors')
-let mysql = require('mysql2');
+let pgp = require('pg-promise');
 
 let app = express()
 
 app.use(cors())
 app.use(express.json())
 
-let connection = mysql.createConnection('mysql://root:admin@localhost:3306/dbtarefas')
+let banco = pgp()('postgres://postgres:admin@localhost:5432/postgres')
 
-app.get('/tarefas', function (req, res) {
-    connection.query('select id, titulo, concluida from tarefas', (error, results, fields) => res.json(results))
+app.get('/tarefas', async function (req, res) {
+    let tarefas = await banco.query('select id, titulo, concluida from tarefas order by id')
+    res.json(tarefas)
 })
 
-app.post('/tarefas', (req, res) => {
-    connection.query("insert into tarefas (titulo, concluida) values (?, ?)", [req.body.titulo, req.body.concluida], (error, results, fields) => res.end())
+app.post('/tarefas', async function (req, res) {
+    await banco.query("insert into tarefas (titulo, concluida) values ($1, $2)", [req.body.titulo, req.body.concluida])
+    res.end()
 })
 
-app.delete('/tarefas/:id', (req, res) => {
-    connection.query("delete from tarefas where id = ?", [req.params.id], (error, results, fields) => res.end());
+app.delete('/tarefas/:id', async function (req, res) {
+    await banco.query("delete from tarefas where id = $1", [req.params.id]);
+    res.end()
 })
 
-app.put('/tarefas/:id', (req, res) => {
-    connection.query("update tarefas set titulo = ?, concluida = ? where id = ?", [req.body.titulo, req.body.concluida, req.params.id], (error, results, fields) => res.end())
+app.put('/tarefas/:id', async function (req, res) {
+    await banco.query("update tarefas set titulo = $1, concluida = $2 where id = $3", [req.body.titulo, req.body.concluida, req.params.id])
+    res.end()
 })
 
 app.listen(3000, () => {
