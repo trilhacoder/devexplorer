@@ -10,27 +10,27 @@ Projeto: https://github.com/trilhafront/devexplorer
 
 ## 2. Banco de dados (PostgreSQL - Para armazenar as tarefas)
 
-- [] Fazer o Fork do projeto: https://github.com/trilhafront/devexplorer
+- [x] Fazer o Fork do projeto: https://github.com/trilhafront/devexplorer
 
-- [] Criar o ambiente (Github Codespaces) do Projeto
+- [x] Criar o ambiente (Github Codespaces) do Projeto
 
-- [] Instalar o banco Postgres:
+- [x] Instalar o banco Postgres:
 
     docker network create network
     
     docker create --network network --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres
 
-- [] Gerenciar o banco Postgres:
+- [x] Gerenciar o banco Postgres:
 
     docker start postgres (para iniciar o banco)
 
     docker run -it --rm --network network postgres psql -h postgres -U postgres (para conectar no banco)
-    
+        - Obs.: usar o comando quit para desconectar do banco
     docker ps (para verificar se o banco está no ar)
     
     docker stop postgres (para parar o banco)
 
-- [] Criar uma tabela e fazer operações:
+- [x] Criar a tabela "tarefas" e fazer operações em SQL:
 
     create table tarefas (id serial primary key, titulo varchar(100), concluida boolean);
 
