@@ -8,7 +8,7 @@ Projeto: https://github.com/trilhafront/devexplorer
 
 <img style="max-width:500px" src="previa.png">
 
-## 2. Banco de dados (PostgreSQL - Para armazenas as tarefas)
+## 2. Banco de dados (PostgreSQL - Para armazenar as tarefas)
 
 - [] Fazer o Fork do projeto: https://github.com/trilhafront/devexplorer
 
