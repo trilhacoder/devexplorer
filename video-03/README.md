@@ -52,6 +52,6 @@ Projeto: https://github.com/trilhafront/devexplorer
 
     drop table tarefas; (para remover a tabela)
 
-## 3. API (Express - Para construir a API REST)
-- [] npm install pg-promise (para se comunicar com o PostrgreSQL)
+## 3. API (pg-promise - Para se comunicar com o PostgreSQL)
+- [x] npm install pg-promise (para se comunicar com o PostrgreSQL)
   - postgres://postgres:postgres@localhost:5432/postgres
