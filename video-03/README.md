@@ -53,26 +53,5 @@ Projeto: https://github.com/trilhafront/devexplorer
     drop table tarefas; (para remover a tabela)
 
 ## 3. API (Express - Para construir a API REST)
-
-- npm install express (para construir a API REST)
-  - https://www.postman.com/downloads (para chamar a API)
-
-    [x] GET /tarefas (para listar as tarefas)
-
-    [] POST /tarefas (para criar as tarefas)
-    {
-        "titulo": "nova tarefa",
-        "concluida": false
-    }
-
-    [] PUT /tarefas (para atualizar as tarefas)
-    {
-        "id": <insira aqui o id da tarefa a ser removida>,
-        "titulo": "nova tarefa atualizada",
-        "concluida": true
-    }
-
-    [] DELETE /tarefas/:id (para remover as tarefas)
-
 - [] npm install pg-promise (para se comunicar com o PostrgreSQL)
   - postgres://postgres:postgres@localhost:5432/postgres
