@@ -54,10 +54,10 @@ Projeto: https://github.com/trilhafront/devexplorer
 
 ## 3. API (Express - Para construir a API REST)
 
-- [] npm install express (para construir a API REST)
-  - https://www.apirequest.io (para chamar a API)
+- npm install express (para construir a API REST)
+  - https://www.postman.com/downloads (para chamar a API)
 
-    [] GET /tarefas (para listar as tarefas)
+    [x] GET /tarefas (para listar as tarefas)
 
     [] POST /tarefas (para criar as tarefas)
     {
