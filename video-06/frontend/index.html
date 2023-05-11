@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lista de Tarefas</title>
+        <link rel="icon" href="favicon.png">
+    </head>
+    <body>
+        <img src="logo.png" alt="Logo do App Lista de Tarefas">
+        <form>
+            <input name="novaTarefa" id="novaTarefa" type="text">
+            <button onclick="adicionarTarefa(event)">+</button>
+        </form>
+
+        <br>
+        <br>
+
+        <div id="listaDeTarefas"></div>
+        
+        <script>
+            listarTarefas()
+
+            async function listarTarefas() {
+                let response = await fetch("https://trilhafront-sturdy-yodel-gvq4vqppxvp27w6-3100.preview.app.github.dev/tarefas")
+                let tarefas = await response.json()
+                let listaDeTarefasEl = document.querySelector("#listaDeTarefas")
+                listaDeTarefasEl.innerHTML = ""
+                tarefas.forEach(function(tarefa) {
+                    let concluida = tarefa.concluida == true ? "checked" : ""
+                    listaDeTarefasEl.innerHTML = listaDeTarefasEl.innerHTML +
+                    `<form id="${tarefa.id}">
+                        <input name="concluida" onclick="atualizarTarefa(event)" type="checkbox" ${concluida}>
+                        <input name="titulo" onblur="atualizarTarefa(event)" type="text" value="${tarefa.titulo}">
+                        <button onclick="removerTarefa(event)">x</button>
+                    <form>
+                            <br>`
+                })
+            }
+            
+            async function removerTarefa(event) {
+                event.preventDefault()
+
+                let botaoExcluirEl = event.target
+                let tarefaDaListaEl = botaoExcluirEl.parentElement
+                let idTarefa = tarefaDaListaEl.id
+                await fetch(`https://trilhafront-sturdy-yodel-gvq4vqppxvp27w6-3100.preview.app.github.dev/tarefas/${idTarefa}`, { 
+                    method: 'DELETE'}
+                )
+                tarefaDaListaEl.remove()                
+            }
+
+            async function adicionarTarefa(event) {
+                event.preventDefault()
+
+                let novaTarefa = event.target.parentElement.novaTarefa.value                
+                await fetch("https://trilhafront-sturdy-yodel-gvq4vqppxvp27w6-3100.preview.app.github.dev/tarefas", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        titulo: novaTarefa,
+                        concluida: false
+                    })
+                })
+                listarTarefas()
+            }
+
+            async function atualizarTarefa(event) {
+                let formTarefa = event.target.parentElement
+                let concluidaAtualizada = formTarefa.concluida.checked
+                let tarefaAtualizada = formTarefa.titulo.value
+                let idTarefa = formTarefa.id
+                fetch(`https://trilhafront-sturdy-yodel-gvq4vqppxvp27w6-3100.preview.app.github.dev/tarefas/${idTarefa}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        titulo: tarefaAtualizada,
+                        concluida: concluidaAtualizada
+                    })
+                })
+            }
+        </script>
+    </body>
+</html>
