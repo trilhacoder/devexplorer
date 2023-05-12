@@ -7,7 +7,7 @@ let app = express()
 app.use(cors())
 app.use(express.json())
 
-let bd = pgp()("postgres://postgres:postgres@localhost:5432/postgres")
+let bd = pgp()(process.env.DATABASE_URL)
 
 app.get("/tarefas", async function(req, res) {
     let tarefas = await bd.query("select * from tarefas")
@@ -29,6 +29,6 @@ app.put("/tarefas/:id", async function(req, res) {
     res.end()
 })
 
-app.listen(3100, function() {
-    console.log("API REST executando na porta 3100 ...")
+app.listen(process.env.PORT || 3000, function() {
+    console.log("API REST executando na porta 3000 ...")
 })
