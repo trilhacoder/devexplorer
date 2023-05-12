@@ -7,7 +7,7 @@ let app = express()
 app.use(cors())
 app.use(express.json())
 
-let bd = pgp()(`${process.env.DATABASE_URL}`)
+let bd = pgp()("postgres://postgres:postgres@localhost:5432/postgres")
 
 app.get("/tarefas", async function(req, res) {
     let tarefas = await bd.query("select * from tarefas")
