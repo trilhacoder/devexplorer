@@ -106,6 +106,6 @@ Projeto: https://github.com/trilhafront/devexplorer
 ## 8. Hospedagem (Para acessar nossa aplicação na Internet)
 
   - Serviço que utilizaremos: https://railway.app
-  - []x Hospedar o banco de dados PostgreSQL
+  - [x] Hospedar o banco de dados PostgreSQL
   - [x] Hospedar a aplicação Back-end (API com Node e Express)
   - [x] Hospedar a aplicação Front-end (HTML, CSS e JavaScript)
